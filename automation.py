@@ -167,3 +167,9 @@ def test_successful_checkout(browser):
         EC.presence_of_element_located((By.CLASS_NAME, 'checkout-success'))
     )
     assert 'order confirmation' in success_message.text
+
+# Future Improvements:
+# - Add more tests for different products
+# - Implement more robust error handling
+# - Make sure ads never appear during tests
+# - Test other parts of the site like login, registration, etc.
