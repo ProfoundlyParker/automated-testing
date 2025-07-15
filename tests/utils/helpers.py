@@ -65,3 +65,13 @@ def add_product_to_cart(driver):
 def go_to_checkout(driver):
     """Navigate to the checkout page."""
     wait_and_click(driver, By.ID, 'top-cart-btn-checkout')
+
+def login_user(browser, email, password):
+    """Log in a user with the provided email and password."""
+    browser.get('https://magento.softwaretestingboard.com/customer/account/login/')
+    wait_for_all_loaders_to_disappear(browser)
+    WebDriverWait(browser, 10).until(
+        EC.visibility_of_element_located((By.ID, 'email'))
+    ).send_keys(email)
+    browser.find_element(By.ID, 'pass').send_keys(password)
+    wait_and_click(browser, By.ID, 'send2')
