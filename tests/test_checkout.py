@@ -1,4 +1,4 @@
-from utils.helpers import add_product_to_cart, go_to_checkout, wait_for_all_loaders_to_disappear
+from utils.helpers import add_product_to_cart, go_to_checkout, wait_for_all_loaders_to_disappear, wait_and_click, login_user
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -91,3 +91,19 @@ def test_successful_checkout(browser):
         EC.presence_of_element_located((By.CLASS_NAME, 'checkout-success'))
     )
     assert 'order confirmation' in success_message.text
+
+def test_send_order_to_multiple_addresses(browser):
+    """Test that the 'Check Out with Multiple Addresses' option works."""
+    add_product_to_cart(browser)
+    wait_for_all_loaders_to_disappear(browser)
+    login_user(browser, 'newtestuser1@example.com', 'TestPass123!')
+    wait_for_all_loaders_to_disappear(browser)
+    wait_and_click(browser, By.CSS_SELECTOR, '.showcart')
+    wait_for_all_loaders_to_disappear(browser)
+    wait_and_click(browser, By.CSS_SELECTOR, '.viewcart')
+    wait_for_all_loaders_to_disappear(browser)
+
+    wait_and_click(browser, By.LINK_TEXT, 'Check Out with Multiple Addresses')
+    wait_for_all_loaders_to_disappear(browser)
+
+    assert 'multishipping' in browser.current_url
