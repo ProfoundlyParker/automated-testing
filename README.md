@@ -4,6 +4,8 @@ This repository contains a comprehensive set of automated end-to-end tests for t
 
 These tests cover nearly all critical user workflows across desktop and mobile views, and are structured for easy maintenance and scalability.
 
+**Note: As of 2/2/26, the Magento faux e-commerce testing site is no longer active. This project will be updated to reflect another live site soon.**
+
 ## ✅ Features & Test Coverage
 
 ### 🔐 Authentication Flows
